@@ -7,8 +7,10 @@ from plugin_manager import PluginManager
 from openai_helper import OpenAIHelper, default_max_tokens, are_functions_available
 from telegram_bot import ChatGPTTelegramBot
 
+from background import keep_alive
 
 def main():
+    keep_alive()
     # Read .env file
     load_dotenv()
 
@@ -111,6 +113,7 @@ def main():
     openai_helper = OpenAIHelper(config=openai_config, plugin_manager=plugin_manager)
     telegram_bot = ChatGPTTelegramBot(config=telegram_config, openai=openai_helper)
     telegram_bot.run()
+
 
 
 if __name__ == '__main__':
