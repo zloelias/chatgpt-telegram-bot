@@ -648,6 +648,12 @@ class OpenAIHelper:
 
     # https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb
     def __count_tokens(self, messages) -> int:
+        """
+        Counts the number of tokens required to send the given messages.
+        :param messages: the messages to send
+        :return: the number of tokens required
+        """
+        model = self.config['model']
         """Return the number of tokens used by a list of messages."""
         try:
             encoding = tiktoken.encoding_for_model(model)
