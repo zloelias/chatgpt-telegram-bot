@@ -5,7 +5,6 @@ from plugins.auto_tts import AutoTextToSpeech
 from plugins.dice import DicePlugin
 from plugins.youtube_audio_extractor import YouTubeAudioExtractorPlugin
 from plugins.ddg_image_search import DDGImageSearchPlugin
-from plugins.ddg_translate import DDGTranslatePlugin
 from plugins.spotify import SpotifyPlugin
 from plugins.crypto import CryptoPlugin
 from plugins.weather import WeatherPlugin
@@ -15,6 +14,7 @@ from plugins.deepl import DeeplTranslatePlugin
 from plugins.worldtimeapi import WorldTimeApiPlugin
 from plugins.whois_ import WhoisPlugin
 from plugins.webshot import WebshotPlugin
+from plugins.iplocation import IpLocationPlugin
 
 
 class PluginManager:
@@ -29,7 +29,6 @@ class PluginManager:
             'weather': WeatherPlugin,
             'crypto': CryptoPlugin,
             'ddg_web_search': DDGWebSearchPlugin,
-            'ddg_translate': DDGTranslatePlugin,
             'ddg_image_search': DDGImageSearchPlugin,
             'spotify': SpotifyPlugin,
             'worldtimeapi': WorldTimeApiPlugin,
@@ -40,6 +39,7 @@ class PluginManager:
             'auto_tts': AutoTextToSpeech,
             'whois': WhoisPlugin,
             'webshot': WebshotPlugin,
+            'iplocation': IpLocationPlugin,
         }
         self.plugins = [plugin_mapping[plugin]() for plugin in enabled_plugins if plugin in plugin_mapping]
 
@@ -69,4 +69,4 @@ class PluginManager:
 
     def __get_plugin_by_function_name(self, function_name):
         return next((plugin for plugin in self.plugins
-                     if function_name in map(lambda spec: spec.get('name'), plugin.get_spec())), None)
+                    if function_name in map(lambda spec: spec.get('name'), plugin.get_spec())), None)
